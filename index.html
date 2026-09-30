@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piscila Beauty Studio | San Sebastián de los Reyes</title>
+<meta name="description" content="Piscila Beauty Studio: manicura, uñas, cejas y pestañas en San Sebastián de los Reyes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --terracotta:#c97b5f;
+    --terracotta-dark:#a85f46;
+    --sand:#f6ece3;
+    --cream:#fffdfa;
+    --ink:#3d322c;
+    --gold:#cf9d5f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  .script{font-family:'Dancing Script',cursive;}
+
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 6%;background:rgba(255,253,250,.88);backdrop-filter:blur(10px);
+    transition:box-shadow .3s;
+  }
+  header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06);}
+  .logo{font-family:'Dancing Script',cursive;font-weight:700;font-size:2rem;color:var(--terracotta-dark);}
+  nav ul{list-style:none;display:flex;gap:30px;}
+  nav a{font-size:.9rem;font-weight:600;letter-spacing:.3px;}
+  .nav-toggle{display:none;font-size:1.6rem;background:none;border:none;color:var(--terracotta-dark);}
+
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    padding:140px 6% 80px;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(201,123,95,.14), transparent 45%),
+      radial-gradient(circle at 10% 85%, rgba(207,157,95,.16), transparent 40%);
+    position:relative;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
+  .hero-text .eyebrow{color:var(--terracotta-dark);text-transform:uppercase;letter-spacing:3px;font-size:.8rem;font-weight:700;}
+  .hero-text h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05;margin:16px 0 22px;}
+  .hero-text h1 span{font-family:'Dancing Script',cursive;color:var(--terracotta);font-weight:700;}
+  .hero-text p{font-size:1.08rem;color:#7a6a60;font-weight:400;max-width:480px;margin-bottom:36px;line-height:1.7;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;background:var(--terracotta);color:#fff;
+    padding:16px 38px;border-radius:50px;font-weight:600;font-size:.95rem;
+    box-shadow:0 14px 30px -10px rgba(168,95,70,.55);transition:transform .25s,box-shadow .25s;
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 18px 34px -8px rgba(168,95,70,.6);}
+
+  .hero-art{position:relative;display:flex;align-items:center;justify-content:center;}
+  .art-circle{
+    width:min(380px,80vw);height:min(380px,80vw);border-radius:50%;
+    background:linear-gradient(135deg,var(--terracotta),var(--gold));
+    display:flex;align-items:center;justify-content:center;position:relative;
+    box-shadow:0 40px 80px -30px rgba(168,95,70,.5);
+  }
+  .art-circle::before{
+    content:'';position:absolute;inset:-16px;border:2px solid var(--sand);border-radius:50%;
+  }
+  .art-circle svg{width:58%;height:58%;}
+  .float-badge{
+    position:absolute;background:#fff;padding:14px 20px;border-radius:16px;
+    box-shadow:0 20px 40px -18px rgba(61,50,44,.25);font-size:.85rem;font-weight:700;
+    display:flex;align-items:center;gap:8px;
+  }
+  .float-badge.b1{top:6%;left:-6%;color:var(--terracotta-dark);}
+  .float-badge.b2{bottom:8%;right:-8%;color:var(--gold);}
+
+  section{padding:100px 6%;}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 56px;}
+  .section-head .eyebrow{color:var(--terracotta-dark);text-transform:uppercase;letter-spacing:3px;font-size:.78rem;font-weight:700;}
+  .section-head h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-top:12px;}
+  .section-head p{margin-top:14px;color:#7a6a60;line-height:1.7;}
+
+  .services{background:var(--sand);}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;max-width:1150px;margin:0 auto;}
+  .service-card{
+    background:var(--cream);padding:40px 30px;border-radius:20px;text-align:center;
+    box-shadow:0 20px 45px -25px rgba(61,50,44,.2);transition:transform .3s;
+  }
+  .service-card:hover{transform:translateY(-8px);}
+  .service-icon{
+    width:66px;height:66px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg,var(--terracotta),var(--gold));
+    display:flex;align-items:center;justify-content:center;color:#fff;
+  }
+  .service-card h3{font-size:1.15rem;margin-bottom:10px;}
+  .service-card p{font-size:.88rem;color:#8a7a70;line-height:1.6;}
+
+  .about{max-width:1000px;margin:0 auto;text-align:center;}
+  .about p{font-size:1.15rem;line-height:1.9;color:#5c4d44;font-weight:400;}
+  .about .script{font-size:2rem;color:var(--terracotta);display:block;margin-bottom:20px;}
+
+  .cta{
+    background:linear-gradient(135deg,var(--terracotta-dark),var(--terracotta));
+    color:#fff;text-align:center;border-radius:32px;max-width:1000px;margin:0 6% 100px;
+    padding:70px 40px;margin-left:auto;margin-right:auto;
+  }
+  .cta h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:16px;}
+  .cta p{opacity:.92;margin-bottom:32px;font-size:1.05rem;}
+  .cta .btn{background:#fff;color:var(--terracotta-dark);}
+
+  footer{background:var(--ink);color:#cbb9ad;text-align:center;padding:34px 6%;font-size:.85rem;}
+  footer span{color:var(--gold);font-family:'Dancing Script',cursive;font-size:1.1rem;}
+
+  .wa-fab{
+    position:fixed;bottom:26px;right:26px;z-index:200;width:62px;height:62px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px rgba(37,211,102,.5);animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{0%{box-shadow:0 10px 28px rgba(37,211,102,.5);}50%{box-shadow:0 10px 28px rgba(37,211,102,.5), 0 0 0 12px rgba(37,211,102,.15);}100%{box-shadow:0 10px 28px rgba(37,211,102,.5);}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}
+    .hero-text p{margin:0 auto 36px;}
+    .float-badge{display:none;}
+    nav{position:fixed;top:0;right:0;height:100vh;width:78%;max-width:300px;background:var(--cream);
+      flex-direction:column;padding:100px 40px;transform:translateX(100%);transition:transform .4s;
+      box-shadow:-10px 0 40px rgba(0,0,0,.1);}
+    nav.open{transform:translateX(0);}
+    nav ul{flex-direction:column;gap:26px;}
+    .nav-toggle{display:block;}
+    section{padding:80px 6%;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <a href="#" class="logo">Piscila</a>
+  <nav id="nav">
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotras">Nosotras</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" id="navToggle">☰</button>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">San Sebastián de los Reyes</span>
+      <h1>Uñas y belleza con <span>estilo propio</span></h1>
+      <p>En Piscila Beauty Studio cuidamos cada detalle de tus manos, pestañas y cejas para que salgas del salón sintiéndote impecable.</p>
+      <a href="https://wa.me/34638421137?text=Hola%2C%20quiero%20reservar%20una%20cita%20en%20Piscila%20Beauty%20Studio" class="btn" target="_blank" rel="noopener">Reservar por WhatsApp →</a>
+    </div>
+    <div class="hero-art">
+      <div class="art-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.3"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div class="float-badge b1">✨ Manicura</div>
+      <div class="float-badge b2">💅 Uñas</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="section-head">
+    <span class="eyebrow">Lo que hacemos</span>
+    <h2>Nuestros servicios</h2>
+    <p>Todo lo que necesitas para lucir tus manos y tu mirada perfectas.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h3>Manicura</h3>
+      <p>Esmaltado semipermanente, gel y diseños personalizados.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
+      <h3>Uñas acrílicas</h3>
+      <p>Extensión y relleno con acabados naturales o llamativos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <h3>Pestañas</h3>
+      <p>Extensiones pelo a pelo y lifting para una mirada intensa.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c2-6 6-9 8-9s6 3 8 9"/></svg></div>
+      <h3>Cejas</h3>
+      <p>Diseño, laminado y tinte para enmarcar tu mirada.</p>
+    </div>
+  </div>
+</section>
+
+<section id="nosotras">
+  <div class="about">
+    <span class="script">Nuestra filosofía</span>
+    <p>En Piscila Beauty Studio creemos que el cuidado personal es un momento para ti. Trabajamos con productos de calidad y mucho mimo en cada detalle, para que cada visita sea una experiencia relajante y el resultado, siempre impecable.</p>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="cta">
+    <h2>Reserva tu cita hoy</h2>
+    <p>Escríbenos por WhatsApp y te confirmamos el mejor horario para ti.</p>
+    <a href="https://wa.me/34638421137?text=Hola%2C%20quiero%20reservar%20una%20cita%20en%20Piscila%20Beauty%20Studio" class="btn" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>Piscila</span> Beauty Studio — San Sebastián de los Reyes
+</footer>
+
+<a class="wa-fab" href="https://wa.me/34638421137?text=Hola%2C%20quiero%20reservar%20una%20cita%20en%20Piscila%20Beauty%20Studio" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15.001c0 2.386.702 4.605 1.912 6.472L4 29l7.727-1.878A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.629 28 15.001 28 8.373 22.629 3 16.001 3zm0 21.818a9.77 9.77 0 0 1-4.98-1.363l-.357-.212-4.583 1.114 1.15-4.47-.232-.367a9.8 9.8 0 0 1-1.5-5.219c0-5.421 4.412-9.833 9.833-9.833s9.833 4.412 9.833 9.833-4.412 9.833-9.833 9.833zm5.38-7.36c-.294-.148-1.741-.859-2.011-.957-.27-.098-.467-.148-.663.148-.196.294-.76.957-.932 1.153-.172.196-.343.221-.637.074-.294-.148-1.242-.458-2.366-1.462-.874-.78-1.464-1.744-1.636-2.038-.172-.294-.018-.453.13-.6.133-.133.294-.343.441-.515.147-.172.196-.294.294-.49.098-.196.049-.368-.025-.515-.074-.148-.663-1.6-.909-2.19-.24-.575-.484-.497-.663-.506l-.564-.01c-.196 0-.515.074-.784.368-.27.294-1.03 1.007-1.03 2.456s1.055 2.85 1.202 3.046c.147.196 2.077 3.17 5.033 4.445.703.303 1.252.484 1.68.619.706.225 1.348.193 1.855.117.566-.085 1.741-.712 1.987-1.4.245-.688.245-1.278.172-1.4-.074-.123-.27-.196-.564-.344z"/></svg>
+</a>
+
+<script>
+  window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20));
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+
+</body>
+</html>
